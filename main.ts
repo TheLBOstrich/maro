@@ -1,15 +1,8 @@
-scene.onOverlapTile(SpriteKind.Enemy, assets.tile`myTile17`, function (sprite, location) {
-    mySprite2.setVelocity(-80, 0)
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
         mySprite.vy = -250
     }
 })
-scene.onOverlapTile(SpriteKind.Enemy, assets.tile`myTile9`, function (sprite, location) {
-    mySprite2.setVelocity(80, 0)
-})
-let mySprite2: Sprite = null
 let mySprite: Sprite = null
 scene.setBackgroundColor(9)
 tiles.setCurrentTilemap(tilemap`level1`)
@@ -31,7 +24,7 @@ mySprite = sprites.create(img`
     . e e e . . . . e e e . 
     e e e e . . . . e e e e 
     `, SpriteKind.Player)
-mySprite2 = sprites.create(img`
+let mySprite2 = sprites.create(img`
     ..................
     .......eeee.......
     ......eeeeee......
@@ -50,12 +43,14 @@ mySprite2 = sprites.create(img`
     ..ffffffddffffff..
     ...fffff..fffff...
     `, SpriteKind.Enemy)
-mySprite2.setVelocity(-80, 0)
 mySprite2.ay = 400
 mySprite.ay = 400
-tiles.placeOnRandomTile(mySprite2, assets.tile`myTile11`)
+tiles.placeOnRandomTile(mySprite2, assets.tile`myTile18`)
 scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite, 100, 0)
-game.onUpdateInterval(500, function () {
-	
-})
+while (true) {
+    mySprite2.setVelocity(-80, 0)
+    pause(1000)
+    mySprite2.setVelocity(80, 0)
+    pause(1000)
+}
